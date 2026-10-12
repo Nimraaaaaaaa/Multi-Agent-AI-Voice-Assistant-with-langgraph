@@ -1,12 +1,14 @@
 # 🖤 JARVIS AI — Multi-Agent Voice Assistant (LangGraph)
 
-Voice se baat karne wala JARVIS-jaisa assistant, **LangGraph** multi-agent
-system pe chalta hai, face se greet karta hai, apps/websites kholta hai,
-email bhejta hai, aur conversation yaad rakhta hai. UI = black glowing orb
-+ waveform (blue nahi, blue sab use karte hain).
+A JARVIS-inspired voice assistant powered by a **LangGraph multi-agent system**. It can greet users using facial recognition, open applications and websites, send emails, and remember conversations.
 
-## Structure
-```
+**UI:** A black glowing orb with a waveform — using a distinctive ember-colored accent instead of the commonly used blue.
+
+**Author:** Nimra Abdulhaq
+
+## Project Structure
+
+```text
 jarvis-ai/
 ├── backend/
 │   ├── main.py
@@ -31,54 +33,125 @@ jarvis-ai/
 └── .env.example
 ```
 
-## Step 1 — venv banayein
+## Step 1 — Create a Virtual Environment
+
 ```bash
 python -m venv venv
-# Windows
+```
+
+**Windows:**
+```bash
 venv\Scripts\activate
-# Mac/Linux
+```
+
+**Mac/Linux:**
+```bash
 source venv/bin/activate
 ```
 
-## Step 2 — install
+## Step 2 — Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
-`face_recognition` compile karti hai (dlib pe depend hai):
-- Windows: CMake + "Desktop development with C++" install karein, phir `pip install cmake dlib face_recognition`
-- Mac: `brew install cmake && pip install dlib face_recognition`
-- Linux: `sudo apt install cmake build-essential`
 
-PyAudio issue ho to:
-- Windows: `pip install pipwin && pipwin install pyaudio`
-- Mac: `brew install portaudio && pip install pyaudio`
-- Linux: `sudo apt install python3-pyaudio`
+The `face_recognition` library requires compilation because it depends on `dlib`.
 
-## Step 3 — .env
-`.env.example` ko copy kar ke `.env` rakhein, apni Anthropic API key,
-naam, aur Gmail App Password (2-Step Verification → App Passwords) daalein.
+**Windows:** Install CMake and the Visual Studio **Desktop development with C++** workload, then run:
 
-## Step 4 — apni photo
-`known_faces/nimra.jpg` (filename = greeting mein naam).
+```bash
+pip install cmake dlib face_recognition
+```
 
-## Step 5 — run
+**Mac:**
+```bash
+brew install cmake
+pip install dlib face_recognition
+```
+
+**Linux:**
+```bash
+sudo apt install cmake build-essential
+```
+
+### If PyAudio Installation Fails
+
+**Windows:**
+```bash
+pip install pipwin
+pipwin install pyaudio
+```
+
+**Mac:**
+```bash
+brew install portaudio
+pip install pyaudio
+```
+
+**Linux:**
+```bash
+sudo apt install python3-pyaudio
+```
+
+## Step 3 — Configure Environment Variables
+
+Copy `.env.example` and save the copy as `.env`.
+
+Add your Anthropic API key, preferred name, and Gmail App Password to the appropriate environment variables.
+
+To generate a Gmail App Password, enable **2-Step Verification** in your Google Account and open the **App Passwords** section.
+
+Keep your `.env` file private. Never upload your API keys or email credentials to GitHub.
+
+## Step 4 — Add Your Photo
+
+Place your photo inside the `known_faces/` directory.
+
+For example:
+
+```text
+known_faces/nimra.jpg
+```
+
+The filename determines the name used in the greeting.
+
+## Step 5 — Run the Project
+
 ```bash
 python -m backend.main
 ```
-Camera check karega → browser mein UI khulega (`http://127.0.0.1:5050`) →
-orb pe click kar ke bolna shuru karein, ya neeche text box use karein.
 
-### Try karein
-- "Open chrome"
-- "Youtube khol do"
+The application will check the camera and open the web interface in your browser.
+
+Open the following URL if it does not open automatically:
+
+`http://127.0.0.1:5050`
+
+Click the glowing orb to start speaking, or use the text input box below it.
+
+## Try These Commands
+
+- "Open Chrome"
+- "Open YouTube"
 - "Open my email"
-- "Email nimra ke subject job update body interview kal hai"
-- "Kaisa hai tu"
+- "Email Nimra with subject job update and body interview tomorrow"
+- "How are you?"
 
-## Customize
-- Naye apps: `backend/agents/app_launcher_agent.py` → `APP_COMMANDS`
-- Naye contacts: `backend/agents/email_agent.py` → `CONTACTS`
-- Orb color: `frontend/style.css` → `--accent-ember`
-- Offline STT: `backend/core/stt.py` mein `speech_recognition` ko `vosk` se replace karein
+## Customization
 
-Made with LangGraph + Claude + Flask-SocketIO
+- **Add new applications:** Update `APP_COMMANDS` in `backend/agents/app_launcher_agent.py`.
+- **Add new contacts:** Update `CONTACTS` in `backend/agents/email_agent.py`.
+- **Change the orb color:** Modify `--accent-ember` in `frontend/style.css`.
+- **Use offline speech recognition:** Replace the `speech_recognition` implementation in `backend/core/stt.py` with Vosk.
+
+## Tech Stack
+
+- **AI Orchestration:** LangGraph
+- **Language Model:** Claude (Anthropic)
+- **Backend:** Flask-SocketIO
+- **Speech Recognition:** Speech-to-Text (STT)
+- **Voice Output:** Text-to-Speech (TTS)
+- **Facial Recognition:** `face_recognition`
+- **Frontend:** HTML, CSS, JavaScript
+
+**Developed by Nimra Abdulhaq**
