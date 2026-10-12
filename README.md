@@ -1,4 +1,4 @@
-# 🖤 JARVIS AI — Multi-Agent Voice Assistant (LangGraph)
+#  JARVIS AI Multi-Agent Voice Assistant (LangGraph)
 
 A JARVIS-inspired voice assistant powered by a **LangGraph multi-agent system**. It can greet users using facial recognition, open applications and websites, send emails, and remember conversations.
 
